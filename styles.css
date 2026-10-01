@@ -526,6 +526,14 @@ a {
   gap: 1.5rem;
 }
 
+.navigation-title {
+  margin: 0 0 1.5rem;
+  color: var(--ink);
+  font-size: 1.125rem;
+  font-weight: 700;
+  line-height: 1.4;
+}
+
 .motion-toggle {
   min-height: 2.75rem;
   padding: 0.5rem 0.75rem;
@@ -732,6 +740,7 @@ a {
 }
 
 .tube.is-active .tube-tag {
+  bottom: 3rem;
   background: #2f4035;
   border-color: #2f4035;
   color: #fff;
