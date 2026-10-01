@@ -1039,6 +1039,7 @@ a {
 
 .skills-section h2,
 .education-section h2,
+.awards-section h2,
 .intro-focus h2 {
   margin: 0;
   font-size: 1rem;
@@ -1048,7 +1049,7 @@ a {
 
 .skills-grid {
   display: grid;
-  grid-template-columns: repeat(2, minmax(11rem, 1fr));
+  grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 0.7rem 0.75rem;
 }
 
@@ -1119,8 +1120,10 @@ a {
 .profile-image {
   display: block;
   width: min(100%, 19rem);
-  aspect-ratio: 1;
+  height: auto;
+  aspect-ratio: 4 / 5;
   object-fit: cover;
+  object-position: center 45%;
   border-radius: 14px;
   border: 1px solid rgba(49, 63, 54, 0.12);
 }
@@ -1161,6 +1164,55 @@ a {
 
 .education-entry p {
   margin: 0;
+}
+
+.resume-download {
+  display: inline-flex;
+  align-items: center;
+  justify-self: start;
+  gap: 0.5rem;
+  min-height: 2.75rem;
+  padding: 0.3rem 0;
+  color: var(--ink);
+  font-size: 0.9rem;
+  font-weight: 600;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.25em;
+}
+
+.resume-download svg {
+  width: 1rem;
+  height: 1rem;
+  flex: 0 0 auto;
+}
+
+.resume-download:hover {
+  color: #526b46;
+}
+
+.resume-format {
+  color: var(--muted);
+  font-weight: 400;
+}
+
+.skill-details {
+  display: grid;
+  gap: 1rem;
+  margin: 0.75rem 0 0;
+  font-size: 0.9rem;
+}
+
+.skill-details dt {
+  margin-bottom: 0.2rem;
+  font-weight: 600;
+}
+
+.skill-details dd {
+  margin: 0;
+}
+
+.awards-section {
+  margin-top: 1rem;
 }
 
 .content-fade {

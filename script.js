@@ -1,16 +1,19 @@
-const contactEndpoint = `https://formsubmit.co/ajax/${atob("eW91bmdhdmExNEBnbWFpbC5jb20=")}`;
+const contactEndpoint = `https://formsubmit.co/ajax/${atob("YXZhbG91aXNlbGl1QGdtYWlsLmNvbQ==")}`;
 
 const experienceTimeline = [
   {
-    role: "Biomedical Specialist II",
+    role: "Biomedical Specialist",
     organization: "Cedars-Sinai Biomanufacturing Center",
     location: "West Hollywood, CA",
     dates: "Dec 2022 - Present",
     bullets: [
-      "Leads a cGMP training program for 20 interns and more than 60 employees.",
-      "Moved qualification tracking from paper records into InstantGMP to improve traceability and reduce errors.",
-      "Co-leads two iPSC differentiation programs with Smartsheet readiness tracking, timelines, integrated calendars, and daily team alignment tools.",
-      "Authors and routes master production records, SOPs, and material specifications while reviewing executed batch records with cross-functional teams.",
+      "Leads a cGMP training program for 20 interns and 60+ employees, coordinating trainers and producing self-paced videos to reduce training time and improve retention.",
+      "Modernizes gowning and aseptic technique qualifications from paper records to InstantGMP to improve efficiency, visibility, traceability, and compliance.",
+      "Co-leads four iPSC-based programs, building Smartsheet task and readiness tracking, timelines, integrated calendars, and meeting minutes for daily alignment, cross-project scheduling, and management reporting.",
+      "Represents Manufacturing in cross-functional quality investigations, contributing to record review, root cause analysis, investigation drafting, and product-impact assessment.",
+      "Identifies and mitigates execution risks involving documentation discrepancies, data integrity, and manufacturing readiness to reduce rework and protect data quality.",
+      "Authors and routes master production records, SOPs, and material specifications per cGMP/FDA expectations; reviews and approves executed batch records with cross-functional teams.",
+      "Standardizes documentation, labels, trackers, and calculation templates to reduce variability and strengthen documentation consistency.",
     ],
   },
   {
@@ -22,6 +25,7 @@ const experienceTimeline = [
       "Owned the startup EHS program by training employees, closing compliance gaps, and authoring OSHA-aligned SOPs.",
       "Executed DOE studies with Ambr bioreactors to optimize process conditions and support scale-up decisions.",
       "Supported pre-clinical and clinical process development for 2D, 3D, adherent mammalian, and mAb programs.",
+      "Collaborated with cross-functional teams and clients to troubleshoot, present results, and drive next-step decisions.",
     ],
   },
   {
@@ -30,9 +34,10 @@ const experienceTimeline = [
     location: "San Antonio, TX",
     dates: "Oct 2020 - Jan 2022",
     bullets: [
-      "Owned GMP equipment calibration, maintenance, and performance qualification workflows.",
+      "Owned GMP equipment calibration, maintenance, and performance qualifications; reviewed and approved calibration documents before archival with QA in MasterControl.",
       "Worked as a cleanroom GMP operator for pre-clinical and clinical manufacturing events up to 80L.",
       "Trained and qualified 20-plus employees on gowning, aseptic technique, BSC disinfection, and material transfer.",
+      "Performed cleanroom environmental monitoring at 128 locations on weekly and biweekly schedules and supported scheduled cGMP cleanroom cleaning.",
     ],
   },
 ];
@@ -41,17 +46,22 @@ const projectThemes = [
   {
     title: "Training Systems",
     description:
-      "Built coordinated cGMP training structures, trainer pools, and self-paced materials that shorten ramp time without loosening standards.",
+      "Coordinates trainers and produces self-paced videos for a cGMP training program serving 20 interns and 60+ employees, reducing training time and improving retention.",
   },
   {
     title: "iPSC Program Operations",
     description:
-      "Runs project operating systems for active differentiation programs with timelines, readiness tracking, shared calendars, and meeting records.",
+      "Co-leads four iPSC-based programs with Smartsheet readiness tracking, timelines, integrated calendars, and meeting minutes for team alignment and management reporting.",
   },
   {
     title: "Documentation Modernization",
     description:
-      "Moves paper-heavy qualification and documentation processes into cleaner digital systems such as InstantGMP.",
+      "Modernizes gowning and aseptic technique qualifications in InstantGMP and standardizes documentation, labels, trackers, and calculation templates.",
+  },
+  {
+    title: "Quality Investigations",
+    description:
+      "Represents Manufacturing in record review, root cause analysis, investigation drafting, and product-impact assessment while addressing documentation and data-integrity risks.",
   },
   {
     title: "Scale-Up and Process Development",
@@ -61,15 +71,15 @@ const projectThemes = [
 ];
 
 const introDescription = [
-  "I'm a cGMP biomanufacturing professional with nearly 6 years of experience across GMP operations and process development, currently at Cedars-Sinai's Biomanufacturing Center. I specialize in building scalable training and execution systems, strengthening QMS documentation workflows, and coordinating cross-functional teams to reduce risk and keep programs on track.",
-  "In my current role, I lead site training and qualification support by coordinating trainers, developing self-paced training videos (gowning, material transfer, BSC disinfection), and transitioning qualification documentation from paper records to eQMS. I also serve as a co-lead on cell culture programs, owning execution visibility through Smartsheet dashboards, readiness tracking, timelines, and integrated calendars used daily for team alignment and cross-project scheduling.",
-  "I'm especially interested in roles at the intersection of quality systems, program/project coordination, and technical operations in regulated environments.",
+  "I'm a cGMP biomanufacturing professional with nearly 6 years of experience across GMP operations, process development, and project execution, currently at Cedars-Sinai's Biomanufacturing Center. I lead cross-functional workstreams, build scalable training and execution systems, and strengthen QMS workflows to reduce operational risk.",
+  "I lead a training program for 20 interns and 60+ employees, coordinate trainers, and produce self-paced training videos. I'm also modernizing gowning and aseptic technique qualifications from paper records to InstantGMP. As a co-lead for four iPSC-based programs, I build Smartsheet dashboards, readiness tracking, timelines, and integrated calendars that support daily alignment and cross-project scheduling.",
+  "My work also connects Manufacturing with cross-functional quality investigations, from record review and root cause analysis to product-impact assessment. I focus on documentation consistency, data integrity, and manufacturing readiness to help teams execute reliably in regulated environments.",
 ];
 
 const introHighlights = [
   "Nearly 6 years across GMP operations and process development",
-  "Training systems, qualification support, and execution tracking",
-  "QMS documentation, eQMS transition, and cross-functional coordination",
+  "Training systems and execution tracking for four iPSC-based programs",
+  "Quality investigations, QMS workflows, and operational risk reduction",
 ];
 
 const educationHistory = [
@@ -78,7 +88,7 @@ const educationHistory = [
     location: "Pittsburgh, PA",
     program: "Bachelor of Science, Biological Sciences",
     supporting: "Minors in Chemistry and Exercise Science",
-    dates: "2016 - 2020",
+    dates: "August 2020",
   },
 ];
 
@@ -131,12 +141,44 @@ const introSkills = [
     tone: "#7a6d59",
     icon: "document",
   },
+  {
+    label: "Quality investigations",
+    detail: "root cause analysis",
+    tone: "#708f85",
+    icon: "clipboard",
+  },
+  {
+    label: "Project scheduling",
+    detail: "timelines and dependencies",
+    tone: "#6e7f88",
+    icon: "document",
+  },
+];
+
+const skillGroups = [
+  {
+    title: "Systems and tools",
+    description: "Excel, PowerPoint, Word, SharePoint/OneDrive, Smartsheet, Adobe Acrobat, MasterControl, InstantGMP, LabArchives, SciNote.",
+  },
+  {
+    title: "Project management",
+    description: "Dashboards, project scheduling, timeline and dependency management, meeting minutes, action logs, resource coordination, training deployment, process improvement.",
+  },
+  {
+    title: "Quality and documentation",
+    description: "SOPs and MPRs, batch record review, material specifications, deviations and CAPA, change controls, risk assessments, quality investigations, root cause analysis.",
+  },
+  {
+    title: "Cell culture",
+    description: "iPSCs, MSCs, mAb, 2D adherent and 3D suspension culture; cell counting with NC-200/202, MoxiGO II, hemocytometer, and Cellometer.",
+  },
 ];
 
 const projectCapabilities = [
   "Training deployment",
   "Program readiness tracking",
   "Batch record authoring",
+  "Quality investigations and risk assessment",
   "Cell processing support",
 ];
 
@@ -194,7 +236,7 @@ function renderSkillIcon(skill) {
 function renderIntroLinks() {
   return `
     <div class="inline-links intro-links">
-      <a class="contact-link linkedin-link" href="https://www.linkedin.com/in/ava-young/" target="_blank" rel="noreferrer">
+      <a class="contact-link linkedin-link" href="https://www.linkedin.com/in/liuava/" target="_blank" rel="noreferrer">
         <span class="contact-link-icon" aria-hidden="true">in</span>
         <span>LinkedIn</span>
       </a>
@@ -236,6 +278,14 @@ function renderSkillsSection() {
           )
           .join("")}
       </div>
+      <dl class="skill-details">
+        ${skillGroups.map((group) => `
+          <div>
+            <dt>${group.title}</dt>
+            <dd>${group.description}</dd>
+          </div>
+        `).join("")}
+      </dl>
     </section>
   `;
 }
@@ -274,7 +324,7 @@ const sections = [
       color: "#6c855d",
       light: "#a5bb95",
     },
-    title: "Ava Young",
+    title: "Ava Liu",
     mainContent() {
       return `
         <div class="minimal-block content-fade intro-content">
@@ -288,7 +338,7 @@ const sections = [
       return `
         <div class="intro-side content-fade">
           <figure class="profile-figure">
-            <img class="profile-image" src="./avayoung.jfif" alt="Ava Young" />
+            <img class="profile-image" src="./ava-liu.jpg" alt="Ava Liu" width="1984" height="2976" />
           </figure>
           <section class="intro-focus" aria-labelledby="focusHeading">
             <h2 id="focusHeading">Focus</h2>
@@ -311,6 +361,12 @@ const sections = [
     title: "Experience",
     mainContent() {
       return `
+        <a class="resume-download" href="./Ava-Liu-Resume-2026.docx" download="Ava-Liu-Resume-2026.docx">
+          <svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 3v12m-4-4 4 4 4-4M5 16v4h14v-4" />
+          </svg>
+          <span>Download resume <span class="resume-format">(DOCX)</span></span>
+        </a>
         <div class="timeline-list content-fade">
           ${experienceTimeline
             .map(
@@ -335,7 +391,17 @@ const sections = [
       `;
     },
     sideContent() {
-      return renderEducationSection();
+      return `
+        ${renderEducationSection()}
+        <section class="awards-section minimal-block content-fade" aria-labelledby="awardsHeading">
+          <h2 id="awardsHeading">Awards and Recognition</h2>
+          <ul class="simple-list">
+            <li>Employee of the Month</li>
+            <li>Aspire Award</li>
+            <li>Train the Trainer (T3) Program</li>
+          </ul>
+        </section>
+      `;
     },
   },
   {
