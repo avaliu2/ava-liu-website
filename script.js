@@ -361,11 +361,11 @@ const sections = [
     title: "Experience",
     mainContent() {
       return `
-        <a class="resume-download" href="./Ava-Liu-Resume-2026.docx" download="Ava-Liu-Resume-2026.docx">
+        <a class="resume-download" href="./Ava-Liu-Resume-2026.pdf" download="Ava-Liu-Resume-2026.pdf">
           <svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
             <path d="M12 3v12m-4-4 4 4 4-4M5 16v4h14v-4" />
           </svg>
-          <span>Download resume <span class="resume-format">(DOCX)</span></span>
+          <span>Download resume <span class="resume-format">(PDF)</span></span>
         </a>
         <div class="timeline-list content-fade">
           ${experienceTimeline
@@ -464,11 +464,11 @@ const sections = [
         <form class="contact-form content-fade" id="contactForm">
           <label>
             <span>Name</span>
-            <input type="text" name="name" placeholder="Your name" required />
+            <input type="text" name="name" autocomplete="name" placeholder="Your name" required />
           </label>
           <label>
             <span>Company</span>
-            <input type="text" name="company" placeholder="Where you are reaching out from" />
+            <input type="text" name="company" autocomplete="organization" placeholder="Company or organization" />
           </label>
           <label class="contact-full">
             <span>Subject</span>
@@ -494,6 +494,23 @@ const sectionTitle = document.getElementById("sectionTitle");
 const mainContent = document.getElementById("mainContent");
 const sideContent = document.getElementById("sideContent");
 const launchButton = document.getElementById("launchButton");
+const contentStage = document.getElementById("contentStage");
+const introScene = document.querySelector(".intro-scene");
+const motionToggle = document.getElementById("motionToggle");
+const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+
+function setMotionPaused(paused) {
+  const isPaused = paused || reducedMotion.matches;
+  labWorld.classList.toggle("motion-paused", isPaused);
+  motionToggle.disabled = reducedMotion.matches;
+  motionToggle.textContent = reducedMotion.matches ? "Motion reduced" : isPaused ? "Resume motion" : "Pause motion";
+}
+
+setMotionPaused(reducedMotion.matches);
+motionToggle.addEventListener("click", () => {
+  setMotionPaused(!labWorld.classList.contains("motion-paused"));
+});
+reducedMotion.addEventListener("change", (event) => setMotionPaused(event.matches));
 
 let hasStarted = false;
 let isTransitioning = false;
@@ -525,13 +542,14 @@ function buildRotor() {
             --tube-color-light: ${section.tone.light};
           "
           aria-label="Open ${section.label}"
+          aria-controls="sectionTitle mainContent sideContent"
         >
           <span class="tube-visual">
             <span class="tube-cap"></span>
             <span class="tube-glass">
               <span class="tube-liquid"></span>
-              <span class="tube-tag">${section.rotorLabel}</span>
             </span>
+            <span class="tube-tag">${section.rotorLabel}</span>
           </span>
         </button>
       `,
@@ -558,7 +576,13 @@ function setRotorState(index) {
   rotor.style.setProperty("--rotor-rotation", `${rotation}deg`);
 
   rotor.querySelectorAll(".tube").forEach((tube) => {
-    tube.classList.toggle("is-active", Number(tube.dataset.index) === index);
+    const isActive = Number(tube.dataset.index) === index;
+    tube.classList.toggle("is-active", isActive);
+    if (isActive) {
+      tube.setAttribute("aria-current", "page");
+    } else {
+      tube.removeAttribute("aria-current");
+    }
   });
 }
 
@@ -619,7 +643,7 @@ function fadeTargets(isSwapping) {
   });
 }
 
-function setActiveSection(index) {
+function setActiveSection(index, { moveFocus = true } = {}) {
   if (index < 0 || index >= sections.length || index === activeIndex) {
     return;
   }
@@ -633,8 +657,12 @@ function setActiveSection(index) {
     activeIndex = index;
     renderSection(activeIndex);
     fadeTargets(false);
+    contentStage.scrollTop = 0;
+    if (moveFocus) {
+      sectionTitle.focus({ preventScroll: true });
+    }
     isTransitioning = false;
-  }, 220);
+  }, labWorld.classList.contains("motion-paused") ? 0 : 220);
 }
 
 function startExperience() {
@@ -650,7 +678,12 @@ function startExperience() {
     labWorld.dataset.state = "open";
     renderSection(activeIndex);
     setRotorState(activeIndex);
-  }, 760);
+    contentStage.inert = false;
+    contentStage.removeAttribute("aria-hidden");
+    sectionTitle.focus({ preventScroll: true });
+    introScene.inert = true;
+    introScene.setAttribute("aria-hidden", "true");
+  }, labWorld.classList.contains("motion-paused") ? 0 : 760);
 }
 
 buildRotor();
@@ -665,35 +698,28 @@ if (shouldAutoOpen) {
   });
 }
 
-window.addEventListener("keydown", (event) => {
+rotor.addEventListener("keydown", (event) => {
   if (!hasStarted || isTransitioning) {
     return;
   }
 
-  if (event.target instanceof HTMLElement) {
-    const interactive = event.target.closest("button, a, input, textarea");
-    if (interactive) {
-      return;
-    }
+  const currentIndex = Number(event.target.closest(".tube")?.dataset.index);
+  if (!Number.isInteger(currentIndex)) return;
+
+  let nextIndex;
+  if (event.key === "ArrowRight" || event.key === "ArrowDown") {
+    nextIndex = (currentIndex + 1) % sections.length;
+  } else if (event.key === "ArrowLeft" || event.key === "ArrowUp") {
+    nextIndex = (currentIndex + sections.length - 1) % sections.length;
+  } else if (event.key === "Home") {
+    nextIndex = 0;
+  } else if (event.key === "End") {
+    nextIndex = sections.length - 1;
+  } else {
+    return;
   }
 
-  if (event.key === "ArrowRight" || event.key === "ArrowDown" || event.key === "PageDown") {
-    event.preventDefault();
-    setActiveSection(Math.min(sections.length - 1, activeIndex + 1));
-  }
-
-  if (event.key === "ArrowLeft" || event.key === "ArrowUp" || event.key === "PageUp") {
-    event.preventDefault();
-    setActiveSection(Math.max(0, activeIndex - 1));
-  }
-
-  if (event.key === "Home") {
-    event.preventDefault();
-    setActiveSection(0);
-  }
-
-  if (event.key === "End") {
-    event.preventDefault();
-    setActiveSection(sections.length - 1);
-  }
+  event.preventDefault();
+  setActiveSection(nextIndex, { moveFocus: false });
+  rotor.querySelector(`[data-index="${nextIndex}"]`).focus({ preventScroll: true });
 });
