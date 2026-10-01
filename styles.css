@@ -588,35 +588,6 @@ a {
   background: var(--line);
 }
 
-.motion-toggle {
-  min-height: 2.75rem;
-  padding: 0.5rem 0.75rem;
-  border: 0;
-  background: transparent;
-  color: var(--muted);
-  font-size: 1rem;
-  text-decoration: underline;
-  text-underline-offset: 0.2em;
-  cursor: pointer;
-}
-
-.motion-toggle:disabled {
-  text-decoration: none;
-  cursor: default;
-}
-
-.motion-paused .microbe,
-.motion-paused .microbe-side {
-  animation-play-state: paused !important;
-}
-
-.motion-paused *,
-.motion-paused *::before,
-.motion-paused *::after {
-  transition-duration: 0.01ms !important;
-  scroll-behavior: auto !important;
-}
-
 .centrifuge-machine {
   position: relative;
   width: min(100%, 20.25rem);
@@ -1028,8 +999,7 @@ a {
   list-style: none;
 }
 
-.timeline-list,
-.project-list {
+.timeline-list {
   gap: 1.5rem;
 }
 
@@ -1088,10 +1058,38 @@ a {
   white-space: nowrap;
 }
 
-.project-list strong,
 .simple-list strong {
   display: block;
   margin-bottom: 0.18rem;
+}
+
+.project-list {
+  gap: 2rem;
+}
+
+.project-list li {
+  display: grid;
+  gap: 0.9rem;
+  padding-bottom: 2rem;
+  border-bottom-color: var(--line);
+}
+
+.project-list h2 {
+  margin: 0;
+  font-size: 1.25rem;
+  font-weight: 600;
+  line-height: 1.4;
+  color: var(--ink);
+}
+
+.project-capabilities {
+  gap: 1rem;
+}
+
+.project-capabilities h2 {
+  margin: 0;
+  font-size: 1.125rem;
+  line-height: 1.4;
 }
 
 .inline-links {

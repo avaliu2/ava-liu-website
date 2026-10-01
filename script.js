@@ -44,29 +44,39 @@ const experienceTimeline = [
 
 const projectThemes = [
   {
-    title: "Training Systems",
-    description:
-      "Coordinates trainers and produces self-paced videos for a cGMP training program serving 20 interns and 60+ employees, reducing training time and improving retention.",
+    title: "Training & Qualification Systems",
+    paragraphs: [
+      "Leads cGMP training and qualification activities for 60+ employees, including trainer coordination and development of self-paced multimedia training.",
+      "Modernizes qualification workflows through eQMS implementation to improve visibility, traceability, and compliance.",
+    ],
   },
   {
-    title: "iPSC Program Operations",
-    description:
-      "Co-leads four iPSC-based programs with Smartsheet readiness tracking, timelines, integrated calendars, and meeting minutes for team alignment and management reporting.",
+    title: "hPSC Program Leadership & Operations",
+    paragraphs: [
+      "Leads and co-leads workstreams across multiple hPSC-based programs, coordinating schedules, readiness, materials, action items, and cross-functional execution.",
+      "Builds Smartsheet operating systems used daily for project alignment, resource planning, and management reporting.",
+    ],
   },
   {
-    title: "Documentation Modernization",
-    description:
-      "Modernizes gowning and aseptic technique qualifications in InstantGMP and standardizes documentation, labels, trackers, and calculation templates.",
+    title: "Technical Documentation & Project Closeout",
+    paragraphs: [
+      "Develops LabArchives process instructions, BoMs, execution tools, and controlled documentation supporting complex cell-culture programs.",
+      "Spearheaded a 50+ slide technical closeout report integrating a 136-day process history, troubleshooting, cell-count trends, imaging, inventory, product yield, and QC results.",
+    ],
   },
   {
-    title: "Quality Investigations",
-    description:
-      "Represents Manufacturing in record review, root cause analysis, investigation drafting, and product-impact assessment while addressing documentation and data-integrity risks.",
+    title: "Quality Investigations & Risk Management",
+    paragraphs: [
+      "Represents Manufacturing in cross-functional quality investigations involving record review, root-cause analysis, investigation drafting, and product-impact assessment.",
+      "Identifies and escalates execution, documentation, data-integrity, contamination, and manufacturing-readiness risks.",
+    ],
   },
   {
-    title: "Scale-Up and Process Development",
-    description:
-      "Supports DOE studies, bioreactor work, and manufacturing decisions across cell therapy and biologics programs.",
+    title: "Process Development & Technical Growth",
+    paragraphs: [
+      "Supports process-development studies involving hPSC/iPSC culture, suspension processes, reagent stability, DOE, and bioreactor work.",
+      "Applies experimental observations and process calculations to material planning, scale-up decisions, and manufacturing execution.",
+    ],
   },
 ];
 
@@ -175,11 +185,13 @@ const skillGroups = [
 ];
 
 const projectCapabilities = [
-  "Training deployment",
-  "Program readiness tracking",
-  "Batch record authoring",
-  "Quality investigations and risk assessment",
-  "Cell processing support",
+  "Project & Program Execution",
+  "cGMP Training & Qualification",
+  "QMS & Controlled Documentation",
+  "Project Scheduling & Readiness",
+  "Quality Investigations / Root Cause Analysis",
+  "Cross-Functional Coordination",
+  "Process Development & Cell Culture",
 ];
 
 function renderSkillIcon(skill) {
@@ -421,8 +433,8 @@ const sections = [
               .map(
                 (project) => `
                   <li>
-                    <strong>${project.title}</strong>
-                    ${project.description}
+                    <h2>${project.title}</h2>
+                    ${project.paragraphs.map((paragraph) => `<p>${paragraph}</p>`).join("")}
                   </li>
                 `,
               )
@@ -433,12 +445,12 @@ const sections = [
     },
     sideContent() {
       return `
-        <div class="minimal-block content-fade">
-          <strong>Capabilities</strong>
+        <section class="minimal-block project-capabilities content-fade" aria-labelledby="capabilitiesHeading">
+          <h2 id="capabilitiesHeading">Capabilities</h2>
           <ul class="simple-list">
             ${projectCapabilities.map((item) => `<li>${item}</li>`).join("")}
           </ul>
-        </div>
+        </section>
       `;
     },
   },
@@ -491,21 +503,7 @@ const sideContent = document.getElementById("sideContent");
 const launchButton = document.getElementById("launchButton");
 const contentStage = document.getElementById("contentStage");
 const introScene = document.querySelector(".intro-scene");
-const motionToggle = document.getElementById("motionToggle");
 const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
-
-function setMotionPaused(paused) {
-  const isPaused = paused || reducedMotion.matches;
-  labWorld.classList.toggle("motion-paused", isPaused);
-  motionToggle.disabled = reducedMotion.matches;
-  motionToggle.textContent = reducedMotion.matches ? "Motion reduced" : isPaused ? "Resume motion" : "Pause motion";
-}
-
-setMotionPaused(reducedMotion.matches);
-motionToggle.addEventListener("click", () => {
-  setMotionPaused(!labWorld.classList.contains("motion-paused"));
-});
-reducedMotion.addEventListener("change", (event) => setMotionPaused(event.matches));
 
 let hasStarted = false;
 let isTransitioning = false;
@@ -657,7 +655,7 @@ function setActiveSection(index, { moveFocus = true } = {}) {
       sectionTitle.focus({ preventScroll: true });
     }
     isTransitioning = false;
-  }, labWorld.classList.contains("motion-paused") ? 0 : 220);
+  }, reducedMotion.matches ? 0 : 220);
 }
 
 function startExperience() {
@@ -678,7 +676,7 @@ function startExperience() {
     sectionTitle.focus({ preventScroll: true });
     introScene.inert = true;
     introScene.setAttribute("aria-hidden", "true");
-  }, labWorld.classList.contains("motion-paused") ? 0 : 760);
+  }, reducedMotion.matches ? 0 : 760);
 }
 
 buildRotor();
