@@ -452,12 +452,7 @@ const sections = [
     },
     title: "Contact",
     mainContent() {
-      return `
-        <div class="minimal-block content-fade contact-brief">
-          <p>Send a note directly to Ava.</p>
-          <p>Use the form to get in touch.</p>
-        </div>
-      `;
+      return "";
     },
     sideContent() {
       return `

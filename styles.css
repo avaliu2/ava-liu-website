@@ -847,6 +847,10 @@ a {
   gap: 1.5rem;
 }
 
+.section-main:empty {
+  display: none;
+}
+
 .ambient-column {
   position: sticky;
   top: 2rem;
